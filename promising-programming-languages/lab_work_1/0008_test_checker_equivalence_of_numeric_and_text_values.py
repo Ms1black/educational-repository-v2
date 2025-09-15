@@ -1,0 +1,2 @@
+import pytest
+from main import checker_equivalence_of_numeric_and_text_value

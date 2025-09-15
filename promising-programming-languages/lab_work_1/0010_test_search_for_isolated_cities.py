@@ -1,0 +1,2 @@
+import pytest
+from main import search_for_isolated_cities

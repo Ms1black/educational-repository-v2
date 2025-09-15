@@ -1,0 +1,2 @@
+import pytest
+from main import counter_word_starting_with_A

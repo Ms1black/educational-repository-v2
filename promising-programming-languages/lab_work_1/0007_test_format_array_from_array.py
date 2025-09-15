@@ -1,0 +1,2 @@
+import pytest
+from main import format_array_from_array
