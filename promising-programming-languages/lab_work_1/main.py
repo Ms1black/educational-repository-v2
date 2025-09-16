@@ -1,4 +1,5 @@
 from math import sin, pow
+import random
 
 def function_evaluation():
    all_values = []
@@ -32,26 +33,126 @@ def sum_of_the_k_lowest_digits(N, k):
       sum += int(i)
    return sum
 
-# def four_digit_number_of_the_offender(dividers, differences, sum):
+# def four_digit_number_of_the_offender():
+#    common_divisor = 2 * 7 * 11
+
 #  return number
 
-# def counter_words_starting_with_A(text):
-#  return count_of_words
 
-# def truth_table(a, b, c):
-#  return table
+def counter_words_starting_with_A(text):
+ 
+ text = text.lower()
+ words = text.split()
+ count_of_words = 0
 
-# def formatting_array_to_matrix(S[]):
-#  return formatted_matrix
+ for word in words:
+     if word.startswith('a') or word.startswith('A') or word.startswith('а') or word.startswith('А'):
+      count_of_words +=1
 
-# def format_array_from_array(A[]):
-#  return matrix_A, matrix_Y
+ return count_of_words
 
-# def checker_equivalence_of_numeric_and_text_values(text_of_numbers_and_letters):
-#  pass # i think that tut mozhno true or false
+def truth_table():
+    rows = [] 
+    
+    header = ["A", "B", "C", "A ИЛИ B", "НЕ(A ИЛИ B)", "A Экв. C", "НЕ(A ИЛИ B) & (A Экв. C)"]
+    rows.append(header)
 
-# def matrix_formation(M):
-#  return square_matrix
+    for a in range(0, 2):
+        for b in range(0, 2):
+            for c in range(0, 2):
+                
+                a_bool = bool(a)
+                b_bool = bool(b)
+                c_bool = bool(c)
 
-# def search_for_isolated_cities(N):
-#  return count_isolated_cities
+                a_or_b_val = a_bool or b_bool
+                not_a_or_b_val = not a_or_b_val
+                a_xor_c_val = a_bool != c_bool 
+
+                final_function_val = not_a_or_b_val and a_xor_c_val
+
+                rows.append([
+                    a,  
+                    b,
+                    c,
+                    int(a_or_b_val),         
+                    int(not_a_or_b_val),
+                    int(a_xor_c_val),
+                    int(final_function_val)
+                ])
+    column_widths = [max(len(str(item)) for item in col) for col in zip(*rows)]
+
+    for i, header_item in enumerate(rows[0]):
+        print(f"{header_item:<{column_widths[i]}}", end="  ")
+    print()
+
+    for row in rows[1:]:
+        for i, item in enumerate(row):
+            print(f"{item:<{column_widths[i]}}", end="  ")
+        print()
+
+
+def formatting_array_to_matrix(S):
+ first_row = []
+ second_row = []
+
+ for i in range(len(S)):
+   if i % 2 == 0:
+     first_row.append(S[i])
+   else: 
+     second_row.append(S[i])
+
+ return [first_row, second_row]
+
+
+def format_array_from_array():
+ 
+ array_A = []
+ array_Y = []
+
+ for i in range(75):
+    array_A.append(random.randint(-5,40))
+   
+ for num in array_A:
+    if num < 20:
+       array_Y.append(num)
+
+ return array_A, array_Y
+
+
+def checker_equivalence_of_numeric_and_text_values(text_of_numbers_and_letters):
+ digit_sum = 0
+ for char in text_of_numbers_and_letters:
+   if char.isdigit():
+     digit_sum += int(char)
+ return digit_sum == len(text_of_numbers_and_letters)
+
+def matrix_formation(M):
+ square_matrix = []
+ for row in range(M):
+    current_row = []
+    for col in range(M):
+       if col > row:
+          current_row.append(0)
+       else:
+          current_row.append(row - col + 1)
+    square_matrix.append(current_row)
+ return square_matrix
+
+def search_for_isolated_cities(N, connectivity_matrix):
+
+    isolated_cities = []
+
+    for i in range(N): 
+        is_isolated = True
+        for j in range(N):
+            if i == j: 
+                continue
+            if connectivity_matrix[i][j] == 1 or connectivity_matrix[j][i] == 1:
+                is_isolated = False 
+                break 
+        
+        if is_isolated:
+            isolated_cities.append(i + 1) 
+            
+    return isolated_cities
