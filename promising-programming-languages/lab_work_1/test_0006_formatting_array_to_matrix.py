@@ -12,11 +12,11 @@ def test_formatting_array_to_matrix():
     ]
     actual_matrix1 = formatting_array_to_matrix(input_s1)
     
-    print(f"Вход S: {input_s1}")
-    print("Визуализация полученной матрицы:")
-    print_matrix(actual_matrix1)
+    print(f"  Вход S: {input_s1}")
+    print_matrix(expected_matrix1, "Ожидаемая матрица")
+    print_matrix(actual_matrix1, "Полученная матрица")
 
-    assert actual_matrix1 == expected_matrix1, "Матрица для S(26) не совпадает."
+    assert actual_matrix1 == expected_matrix1, "❌ FAIL: Матрица для S(26) не совпадает."
     print("✅ PASS: Тест 1 (S(26))")
 
     input_s2 = [10, 20, 30, 40, 50]
@@ -26,9 +26,9 @@ def test_formatting_array_to_matrix():
     ]
     actual_matrix2 = formatting_array_to_matrix(input_s2)
 
-    print(f"\nВход S: {input_s2}")
-    print("Визуализация полученной матрицы:")
-    print_matrix(actual_matrix2)
+    print(f"\n  Вход S: {input_s2}")
+    print_matrix(expected_matrix2, "Ожидаемая матрица")
+    print_matrix(actual_matrix2, "Полученная матрица")
 
-    assert actual_matrix2 == expected_matrix2, "Матрица для меньшего массива не совпадает."
+    assert actual_matrix2 == expected_matrix2, "❌ FAIL: Матрица для меньшего массива не совпадает."
     print("✅ PASS: Тест 2 (меньший массив)")

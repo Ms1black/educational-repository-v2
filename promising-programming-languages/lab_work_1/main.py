@@ -37,13 +37,13 @@ def sum_of_the_k_lowest_digits(N, k):
 def four_digit_number_of_the_offender():
    common_divisor = 2 * 7 * 11
    
-   start_multiplier = 1000 // common_divisor
+   start = 1000 // common_divisor
    if 1000 % common_divisor != 0:
-       start_multiplier += 1
+       start += 1
    
-   end_multiplier = 9999 // common_divisor
+   end = 9999 // common_divisor
 
-   for multiplier in range(start_multiplier, end_multiplier + 1):
+   for multiplier in range(start, end + 1):
       number = common_divisor * multiplier
       s_number = str(number)
       

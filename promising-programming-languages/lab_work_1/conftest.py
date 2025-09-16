@@ -1,19 +1,18 @@
-# conftest.py
 import pytest
 
-def print_matrix(matrix):
-    """
-    Вспомогательная функция для красивого вывода матриц в тестах.
-    """
+def print_matrix(matrix, title=""):
+    if title:
+        print(f"\n{title}:")
     if not matrix:
-        print("[]")
+        print("[Пусто]")
         return
     
-    # Расчет ширины столбцов
-    # Пропускаем заголовки, если это таблица истинности, чтобы не искажать ширину
-    start_row = 0
+    has_header = False
     if len(matrix) > 0 and isinstance(matrix[0], list) and any(isinstance(x, str) for x in matrix[0]):
-        start_row = 1 # Предполагаем, что первая строка - заголовок
+        try:
+            [int(x) for x in matrix[0][:3]]
+        except ValueError:
+            has_header = True
 
     column_widths = [0] * len(matrix[0])
     for r_idx, row in enumerate(matrix):
@@ -21,17 +20,16 @@ def print_matrix(matrix):
             if len(str(item)) > column_widths[j]:
                 column_widths[j] = len(str(item))
     
-    # Печатаем заголовок, если он есть
-    if start_row == 1:
+    if has_header:
         for j, item in enumerate(matrix[0]):
             print(f" {str(item):<{column_widths[j]}} ", end="")
         print()
-        for j, item in enumerate(matrix[0]):
-            print(f"{'-' * (column_widths[j] + 2)}", end="") # +2 для пробелов по бокам
+        for j in range(len(matrix[0])):
+            print(f"{'-' * (column_widths[j] + 2)}", end="")
         print()
 
-
-    for row in matrix[start_row:]:
+    start_data_row = 1 if has_header else 0
+    for row in matrix[start_data_row:]:
         for j, item in enumerate(row):
             print(f" {str(item):<{column_widths[j]}} ", end="")
-        print()
+        print() 
