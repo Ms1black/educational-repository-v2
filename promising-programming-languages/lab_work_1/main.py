@@ -33,10 +33,44 @@ def sum_of_the_k_lowest_digits(N, k):
       sum += int(i)
    return sum
 
-# def four_digit_number_of_the_offender():
-#    common_divisor = 2 * 7 * 11
 
-#  return number
+def four_digit_number_of_the_offender():
+   common_divisor = 2 * 7 * 11
+   
+   start_multiplier = 1000 // common_divisor
+   if 1000 % common_divisor != 0:
+       start_multiplier += 1
+   
+   end_multiplier = 9999 // common_divisor
+
+   for multiplier in range(start_multiplier, end_multiplier + 1):
+      number = common_divisor * multiplier
+      s_number = str(number)
+      
+      unique_digits = []
+      for char in s_number:
+         current_digit = int(char)
+         is_distinct = True
+         for existing_digit in unique_digits:
+            if current_digit == existing_digit:
+               is_distinct = False
+               break
+         if is_distinct:
+            unique_digits.append(current_digit)
+      
+      if len(unique_digits) != 2:
+         continue
+      
+      digit_sum = 0
+      for char in s_number:
+         digit_sum += int(char)
+      
+      if digit_sum != 30:
+         continue
+      
+      return number
+      
+   return None
 
 
 def counter_words_starting_with_A(text):

@@ -1,36 +1,27 @@
-# 0001_test_function_evaluation.py
 import pytest
 import math
-from main import function_evaluation # Импорт функции из main.py
+from main import function_evaluation
 
-# АДАПТИРОВАНО: Этот тест предполагает, что function_evaluation не принимает аргументов
-def test_function_evaluation_fixed_output():
-    # Функция function_evaluation() всегда вычисляет один и тот же фиксированный диапазон (x от 0.0 до 1.1).
-    # Мы не можем изменить диапазон через параметры.
+def test_function_evaluation_output():
+    print("\n--- Тест function_evaluation ---")
     
-    results = function_evaluation() # <--- ВЫЗЫВАЕТСЯ БЕЗ АРГУМЕНТОВ
+    actual_values = function_evaluation()
+
+    expected_values = []
+    x = 0.0
+    step = 0.1
+    while x < 1.2:
+        val = math.sin(x) + math.pow((math.sin(math.pow(x,2))),2) + math.pow((math.sin(math.pow(x,3))),3)
+        expected_values.append((x, val))
+        x = round(x + step, 10)
     
-    # x < 1.2 означает 0.0, 0.1, ..., 1.1 - всего 12 значений.
-    assert len(results) == 12
+    assert len(actual_values) == len(expected_values), "Длина списка результатов не совпадает"
 
-    # Проверяем первое значение (для x=0.0)
-    expected_f_x_00 = math.sin(0.0) + math.pow(math.sin(math.pow(0.0,2)),2) + math.pow(math.sin(math.pow(0.0,3)),3)
-    assert math.isclose(results[0][0], 0.0, rel_tol=1e-9)
-    assert math.isclose(results[0][1], expected_f_x_00, rel_tol=1e-6)
-
-    # Проверяем последнее значение (для x=1.1)
-    x_last = 1.1
-    expected_f_x_last = math.sin(x_last) + math.pow(math.sin(math.pow(x_last,2)),2) + math.pow(math.sin(math.pow(x_last,3)),3)
-    assert math.isclose(results[11][0], x_last, rel_tol=1e-9)
-    assert math.isclose(results[11][1], expected_f_x_last, rel_tol=1e-6)
-
-    # Убедимся, что 1.2 не включено (потому что цикл while x < 1.2)
-    # На самом деле, math.isclose(results[11][0], 1.1, rel_tol=1e-9)
-    assert results[11][0] < 1.2
-
-# Удалены параметризованные тесты и тесты с передачей x_end_value,
-# потому что function_evaluation() их не принимает.
-# Включаю здесь тест, который будет пропущен для демонстрации в отчете
-@pytest.mark.skip(reason="Эта функция пока неактивна или в разработке (демонстрация пропуска).")
-def test_skipped_function_evaluation_example():
-    assert function_evaluation()[0][1] == 0.0 
+    for i in range(len(expected_values)):
+        x_expected, val_expected = expected_values[i]
+        x_actual, val_actual = actual_values[i]
+        
+        assert x_actual == pytest.approx(x_expected, rel=1e-9), f"Неверное значение x в индексе {i}"
+        assert val_actual == pytest.approx(val_expected, rel=1e-9), f"Неверное значение функции в индексе {i}"
+    
+    print("✅ PASS: function_evaluation генерирует корректные значения.")
