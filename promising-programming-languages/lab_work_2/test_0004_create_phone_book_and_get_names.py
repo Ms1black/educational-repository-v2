@@ -9,7 +9,7 @@ from conftest import print_matrix
     (3, [("Анна", "111"), ("Борис", "222"), ("Анна", "333")], ["Анна", "Борис"], {"Анна": "333", "Борис": "222"}, "Дублирующиеся имена (последнее заменяет)"),
     (1, [("Алиса", "555"), ("Боб", "666")], ["Алиса"], {"Алиса": "555"}, "num_contacts меньше contact_data"),
 ])
-def create_phone_book_and_get_names(num_contacts, contact_data, expected_names_list, expected_phone_book, description, capsys):
+def test_create_phone_book_and_get_names(num_contacts, contact_data, expected_names_list, expected_phone_book, description, capsys):
     print(f"\n--- Тест Задание 4: {description} ---")
     
     actual_names_list, actual_phone_book = create_phone_book_and_get_names(num_contacts, contact_data)

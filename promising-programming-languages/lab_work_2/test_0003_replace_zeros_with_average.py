@@ -9,7 +9,7 @@ from main import replace_zeros_with_average
     ([0.0], [0.0], "Один элемент, ноль"), 
     ([], [], "Пустой массив"),
 ])
-def replace_zeros_with_average(input_arr, expected_arr, description):
+def test_replace_zeros_with_average(input_arr, expected_arr, description):
     print(f"\n--- Тест Задание 3: {description} ---")
     
     actual_arr = replace_zeros_with_average(input_arr)

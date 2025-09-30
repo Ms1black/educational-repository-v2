@@ -11,7 +11,7 @@ from main import process_array_from_input
     (-5, [], None, [], "Некорректное N"), 
     (3, [1, 2], None, [], "Недостаточно элементов"), 
 ])
-def process_array_from_input(N, elements, expected_max, expected_reversed_arr, description, capsys):
+def test_process_array_from_input(N, elements, expected_max, expected_reversed_arr, description, capsys):
     print(f"\n--- Тест Задание 2: {description} ---")
     
     actual_max, actual_reversed_arr = process_array_from_input(N, elements)

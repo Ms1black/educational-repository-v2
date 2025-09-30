@@ -8,7 +8,7 @@ from main import replace_colons_and_count
     (":::::", "%%%%%", 5, "Только двоеточия"),
     (":Один:Два:", "%Один%Два%", 3, "Двоеточия в начале/конце и середине"),
 ])
-def replace_colons_and_count(input_string, expected_modified_string, expected_count, description):
+def test_replace_colons_and_count(input_string, expected_modified_string, expected_count, description):
     print(f"\n--- Тест Задание 1: {description} ---")
     
     actual_modified_string, actual_count = replace_colons_and_count(input_string)

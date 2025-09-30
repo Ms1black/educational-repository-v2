@@ -17,7 +17,7 @@ def create_test_file():
     ("", None, None, "Четных положительных чисел в файле не найдено.", "Пустой файл"),
     ("1\n3\n5\n7", None, None, "Четных положительных чисел в файле не найдено.", "Только нечетные числа"),
 ])
-def find_min_max_even_in_file(tmp_path, create_test_file, input_content, expected_min, expected_max, expected_message_part, description):
+def test_find_min_max_even_in_file(tmp_path, create_test_file, input_content, expected_min, expected_max, expected_message_part, description):
     print(f"\n--- Тест Задание 6: {description} ---")
     
     input_file = create_test_file(tmp_path / "numbers_in.txt", input_content)

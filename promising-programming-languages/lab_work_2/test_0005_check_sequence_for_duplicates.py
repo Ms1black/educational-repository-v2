@@ -9,7 +9,7 @@ from main import check_sequence_for_duplicates
     ("", [], "Пустая строка"),
     ("  ", [], "Строка только из пробелов"),
 ])
-def check_sequence_for_duplicates(sequence_str, expected_results, description, capsys):
+def test_check_sequence_for_duplicates(sequence_str, expected_results, description, capsys):
     print(f"\n--- Тест Задание 5: {description} ---")
     
     actual_results = check_sequence_for_duplicates(sequence_str)
