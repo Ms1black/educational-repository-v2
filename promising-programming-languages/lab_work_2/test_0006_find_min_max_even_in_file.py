@@ -45,7 +45,7 @@ def test_find_min_max_even_in_file(tmp_path, create_test_file, input_content, ex
     
     print("    ✅ Пройдено.")
 
-def find_min_max_even_in_file_non_existent_input(tmp_path, capsys):
+def test_find_min_max_even_in_file_non_existent_input(tmp_path, capsys):
     print("\n--- Тест Задание 6: Несуществующий входной файл ---")
     
     input_file = tmp_path / "non_existent.txt"
