@@ -50,12 +50,12 @@ def replace_zeros_with_average(arr):
         else:
             modified_arr.append(item)
     
-    return 
+    return modified_arr
 
 def create_phone_book_and_get_names(num_contacts, contact_data): 
     phone_book = {}
     if num_contacts <= 0:
-        return [], {}
+        return [], {}я
 
     for i in range(min(num_contacts, len(contact_data))):
         name, phone_number = contact_data[i]
@@ -70,16 +70,11 @@ def create_phone_book_and_get_names(num_contacts, contact_data):
     print(f"\nСписок всех имен: {names_list}") 
     return names_list, phone_book
 
-
 def check_sequence_for_duplicates(sequence_str):
     results = []
     seen_numbers = set()
 
     numbers_str = sequence_str.split()
-
-    print(f"Входная последовательность: {numbers_str}")
-    print("Результаты проверки:")
-
     for num_str in numbers_str:
         try:
             number = int(num_str)
@@ -90,9 +85,6 @@ def check_sequence_for_duplicates(sequence_str):
                 seen_numbers.add(number)
         except ValueError:
             results.append(f"Ошибка: '{num_str}' не является числом")
-
-    for res in results:
-        print(res)
         
     return results
 
