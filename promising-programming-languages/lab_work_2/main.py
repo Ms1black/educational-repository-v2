@@ -1,4 +1,4 @@
-def replace(input_string):
+def replace_colons_and_count(input_string):
     count = input_string.count(':')
     modified_string = input_string.replace(':', '%')
     return modified_string, count
