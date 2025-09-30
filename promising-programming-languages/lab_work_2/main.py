@@ -55,7 +55,7 @@ def replace_zeros_with_average(arr):
 def create_phone_book_and_get_names(num_contacts, contact_data): 
     phone_book = {}
     if num_contacts <= 0:
-        return [], {}я
+        return [], {}
 
     for i in range(min(num_contacts, len(contact_data))):
         name, phone_number = contact_data[i]
