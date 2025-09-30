@@ -1,4 +1,4 @@
-name: Python Tests for Lab Work 1
+name: Python Labs Tests
 
 on:
   push:
@@ -7,9 +7,16 @@ on:
     branches: [ main, master ]
 
 jobs:
-  build:
+  run_lab_tests:
     runs-on: ubuntu-latest
-
+    strategy:
+      fail-fast: false 
+      matrix:
+        lab_dir:
+          - promising-programming-languages/lab_work_1
+          - promising-programming-languages/lab_work_2
+          # - promising-programming-languages/lab_work_3
+          # - discrete-mathematics/lab_work_1 
     steps:
     - name: Checkout repository
       uses: actions/checkout@v3
@@ -19,13 +26,13 @@ jobs:
       with:
         python-version: '3.10'
 
-    - name: Install dependencies
+    - name: Install dependencies (in ${{ matrix.lab_dir }})
       run: |
         python -m pip install --upgrade pip
         pip install pytest
-      working-directory: promising-programming-languages/lab_work_1 
+      working-directory: ${{ matrix.lab_dir }} 
 
-    - name: Run Pytest Tests
+    - name: Run Pytest Tests for ${{ matrix.lab_dir }}
       run: |
         pytest -v -s
-      working-directory: promising-programming-languages/lab_work_1 
+      working-directory: ${{ matrix.lab_dir }} 
