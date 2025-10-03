@@ -3,29 +3,41 @@
 #include <exception>
 #include <iostream>
 
+#define RESET   "\033[0m"
+#define RED     "\033[31m"      /* Красный */
+#define YELLOW  "\033[33m"      /* Желтый */
+#define BLUE    "\033[34m"      /* Синий */
+#define MAGENTA "\033[35m"      /* Пурпурный */
+#define CYAN    "\033[36m"      /* Голубой */
+
 class SLException : public std::exception {
 private:
     std::string message;
+
+public: 
     enum ErrorType { EMPTY_LIST, OUT_OF_INDEX, FILE_ERROR, INVALID_INPUT };
+
+private: 
     ErrorType type;
 
 public:
     SLException(ErrorType errorType, const std::string& detail = "") : type(errorType) {
+        std::string prefix = RED "Ошибка" RESET;
         switch (type) {
             case EMPTY_LIST:
-                message = "Ошибка [ПУСТОЙ_СПИСОК]: Список пуст. " + detail;
+                message = prefix + " [ПУСТОЙ_СПИСОК]: Список пуст. " + detail;
                 break;
             case OUT_OF_INDEX:
-                message = "Ошибка [ВНЕ_ДИАПАЗОНА]: Индекс вне границ. " + detail;
+                message = prefix + " [ВНЕ_ДИАПАЗОНА]: Индекс вне границ. " + detail;
                 break;
             case FILE_ERROR:
-                message = "Ошибка [ФАЙЛА]: Не удалось обработать файл. " + detail;
+                message = prefix + " [ФАЙЛА]: Не удалось обработать файл. " + detail;
                 break;
             case INVALID_INPUT:
-                message = "Ошибка [НЕКОРРЕКТНЫЙ_ВВОД]: Предоставлены неверные данные. " + detail;
+                message = prefix + " [НЕКОРРЕКТНЫЙ_ВВОД]: Предоставлены неверные данные. " + detail;
                 break;
             default:
-                message = "Ошибка [НЕИЗВЕСТНО]: Произошла неизвестная ошибка. " + detail;
+                message = prefix + " [НЕИЗВЕСТНО]: Произошла неизвестная ошибка. " + detail;
                 break;
         }
     }
