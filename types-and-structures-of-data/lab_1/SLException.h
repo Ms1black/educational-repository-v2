@@ -4,11 +4,11 @@
 #include <iostream>
 
 #define RESET   "\033[0m"
-#define RED     "\033[31m"      /* Красный */
-#define YELLOW  "\033[33m"      /* Желтый */
-#define BLUE    "\033[34m"      /* Синий */
-#define MAGENTA "\033[35m"      /* Пурпурный */
-#define CYAN    "\033[36m"      /* Голубой */
+#define RED     "\033[31m"      
+#define YELLOW  "\033[33m"     
+#define BLUE    "\033[34m"      
+#define MAGENTA "\033[35m"     
+#define CYAN    "\033[36m"     
 
 class SLException : public std::exception {
 private:
