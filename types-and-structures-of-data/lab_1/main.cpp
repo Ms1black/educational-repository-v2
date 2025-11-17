@@ -8,15 +8,7 @@
 
 #include "SingleList.h"
 #include "SLException.h"
-
-#define RESET   "\033[0m"
-#define RED     "\033[31m"
-#define GREEN   "\033[32m"
-#define YELLOW  "\033[33m"
-#define BLUE    "\033[34m"
-#define MAGENTA "\033[35m"
-#define CYAN    "\033[36m"
-#define BRIGHT_MAGENTA "\033[95m"
+#include "../ColorCodes.h"
 
 std::vector<std::string> getUtf8Characters(const std::string& s) {
     std::vector<std::string> chars;
@@ -135,7 +127,7 @@ void runApplication() {
 
             switch (choice) {
                 case 1: {
-                    std::cout << CYAN "Введите символ UTF-8 для добавления: " RESET;
+                    std::cout << CYAN << "Введите символ UTF-8 для добавления: " << RESET;
                     std::string temp_input_str;
                     std::cin >> std::ws;
                     std::getline(std::cin, temp_input_str); 
@@ -152,7 +144,7 @@ void runApplication() {
                     break;
                 }
                 case 2: {
-                    std::cout << CYAN "Введите индекс для удаления: " RESET;
+                    std::cout << CYAN << "Введите индекс для удаления: " << RESET;
                     std::cin >> index;
                     if (std::cin.fail()) throw SLException(SLException::INVALID_INPUT, "Неверный ввод индекса для DeleteItem.");
                     std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
@@ -162,7 +154,7 @@ void runApplication() {
                     break;
                 }
                 case 3: {
-                    std::cout << CYAN "Введите символ UTF-8 для проверки: " RESET;
+                    std::cout << CYAN << "Введите символ UTF-8 для проверки: " << RESET;
                     std::string temp_input_str;
                     std::cin >> std::ws;
                     std::getline(std::cin, temp_input_str);
