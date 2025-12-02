@@ -7,12 +7,14 @@
 #define RED     "\033[31m"
 
 class LongNumException : public std::exception {
-private:
-    std::string message;
-    ErrorType type;
+
 
 public:
     enum ErrorType { INVALID_INPUT, ARITHMETIC_ERROR, OVERFLOW_ERROR };
+
+private:
+    std::string message;
+    ErrorType type;
 
 private:
     LongNumException(ErrorType errorType, const std::string& detail = "") : type(errorType) {
